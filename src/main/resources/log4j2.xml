@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+	<Appenders>
+		<Console name="LogToConsole" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+		
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%% SERVER %%%%%%%%%%%%%%%%%%%%%%%%%% -->		
+	<RollingFile name="RollingFile">
+      <FileName>/logs/age_verification.log</FileName>
+      <FilePattern>/logs/age_verification%d{yyyy-MM-dd-hh}.log</FilePattern>
+      <PatternLayout>
+        <Pattern>%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <CronTriggeringPolicy schedule="0 0 0 * * ?" />
+      </Policies>
+    </RollingFile>
+    
+    <RollingFile name="ErrorRollingFile">
+      <FileName>/logs/age_verification_error.log</FileName>
+      <FilePattern>/logs/age_verification%d{yyyy-MM-dd-hh}.log</FilePattern>
+      <PatternLayout>
+        <Pattern>%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <CronTriggeringPolicy schedule="0 0 0 * * ?" />
+      </Policies>
+    </RollingFile>
+		
+		<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FAHEEM PC %%%%%%%%%%%%%%%%%%%%%%%%%% -->
+		
+		<!-- <RollingFile name="RollingFile">
+      <FileName>/home/faheem/faheem/logs/age_verification.log</FileName>
+      <FilePattern>/home/faheem/faheem/logs/age_verification%d{yyyy-MM-dd-hh-mm}.log</FilePattern>
+      <PatternLayout>
+        <Pattern>%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n</Pattern>
+      </PatternLayout>
+      <Policies> rolling logs every minute
+        <CronTriggeringPolicy schedule="0 * * ? * *" />
+      </Policies>
+    </RollingFile>
+    
+    <RollingFile name="ErrorRollingFile">
+      <FileName>/home/faheem/faheem/logs/age_verification_error.log</FileName>
+      <FilePattern>/home/faheem/faheem/logs/age_verification%d{yyyy-MM-dd-hh-mm}.log</FilePattern>
+      <PatternLayout>
+        <Pattern>%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n</Pattern>
+      </PatternLayout>
+      <Policies> rolling logs every minute
+        <CronTriggeringPolicy schedule="0 * * ? * *" />
+      </Policies>
+    </RollingFile> -->
+    
+    
+	</Appenders>
+	<Loggers>
+		<Logger name="com.globalcharge.ageverification" level="info"
+			additivity="false">
+			<AppenderRef ref="RollingFile" />
+			<AppenderRef ref="LogToConsole" />
+		</Logger>
+		<Logger name="com.globalcharge.ageverification" level="debug"
+			additivity="false">
+			<AppenderRef ref="RollingFile" />
+			<AppenderRef ref="LogToConsole" />
+		</Logger>
+		<Logger name="org.springframework.boot" level="info"
+			additivity="false">
+			<AppenderRef ref="RollingFile" />
+			<AppenderRef ref="LogToConsole" />
+		</Logger>
+		<Logger name="org.springframework.boot" level="error"
+			additivity="false">
+			<AppenderRef ref="RollingFile" />
+			<AppenderRef ref="LogToConsole" />
+		</Logger>
+		<Root level="error">
+		<AppenderRef ref="RollingFile" />
+			<AppenderRef ref="ErrorRollingFile" />
+			<AppenderRef ref="LogToConsole" />
+		</Root>
+	</Loggers>
+	
+	
+	
+	
+</Configuration>
